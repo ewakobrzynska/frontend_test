@@ -3,7 +3,7 @@
         <div class="header-left">
             <div class="logo">
                 <a href="/">
-                    <img src="html5-logo.jpg" alt="Logo HTML5">
+                    <img src="@/assets/html5-logo.png" alt="Logo HTML55">
                 </a>
             </div>
         </div>
