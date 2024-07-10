@@ -22,10 +22,10 @@
                 <div class="block">
                     <div class="block__title">BLOK DRUGI</div>
                     <div class="block__tile">
-                        <button class="block__action-button" :class="{ 'block__action-button--active': selectedTileAction === 'zastap' }" @click="handleTileChange('zastap')">
+                        <button class="block__action-button" @click="handleTileChange('zastap')">
                             <b>ZASTĄP</b>
                         </button>
-                        <button class="block__action-button" :class="{ 'block__action-button--active': selectedTileAction === 'doklej' }" @click="handleTileChange('doklej')">
+                        <button class="block__action-button" @click="handleTileChange('doklej')">
                             <b>DOKLEJ</b>
                         </button>
                     </div>
@@ -104,7 +104,9 @@ export default {
             const randomIndex = Math.floor(Math.random() * unusedContents.length);
             return unusedContents[randomIndex].text;
         }
+        
     }
+    
 }
 </script>
 
@@ -188,11 +190,6 @@ export default {
     background-image: linear-gradient(135deg, #e78302, #ffab3c);
     color: white;
   }
-}
-
-.block__action-button--active {
-  background-image: linear-gradient(135deg, #e78302, #ffab3c);
-  color: white;
 }
 
 .block__content {
