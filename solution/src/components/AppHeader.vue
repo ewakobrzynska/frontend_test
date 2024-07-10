@@ -10,7 +10,6 @@
         <div class="header-right">
             <div class="header-title">
                 Zadanie <b>rekrutacyjne</b><br>
-                
             </div>
         </div>
     </header>

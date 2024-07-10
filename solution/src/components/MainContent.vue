@@ -4,28 +4,38 @@
         <div class="column-container">
             <div class="column">
                 <div class="block">
-                    <div class="block-title">BLOK PIERWSZY</div>
-                    <div class="radio-buttons">
-                        <label><input type="radio" name="option" value="first" @change="handleOptionChange"> Opcja pierwsza</label>
-                        <label><input type="radio" name="option" value="second" @change="handleOptionChange"> Opcja druga</label>
-                        <label><input type="radio" name="option" value="random" @change="handleOptionChange"> Opcja losowa</label>
+                    <div class="block__title">BLOK PIERWSZY</div>
+                    <div class="block__radio-buttons">
+                        <label :class="{ 'block__radio-button--selected': selectedOption === 'first' }" class="block__radio-button">
+                            <input type="radio" name="option" value="first" @change="handleOptionChange" aria-label="Opcja pierwsza"> Opcja pierwsza
+                        </label>
+                        <label :class="{ 'block__radio-button--selected': selectedOption === 'second' }" class="block__radio-button">
+                            <input type="radio" name="option" value="second" @change="handleOptionChange" aria-label="Opcja druga"> Opcja druga
+                        </label>
+                        <label :class="{ 'block__radio-button--selected': selectedOption === 'random' }" class="block__radio-button">
+                            <input type="radio" name="option" value="random" @change="handleOptionChange" aria-label="Opcja losowa"> Opcja losowa
+                        </label>
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div class="block">
-                    <div class="block-title">BLOK DRUGI</div>
-                    <div class="tile">
-                        <button class="action-button" :class="{ active: selectedTileAction === 'zastap' }" @click="handleTileChange('zastap')">ZASTĄP</button>
-                        <button class="action-button" :class="{ active: selectedTileAction === 'doklej' }" @click="handleTileChange('doklej')">DOKLEJ</button>
+                    <div class="block__title">BLOK DRUGI</div>
+                    <div class="block__tile">
+                        <button class="block__action-button" :class="{ 'block__action-button--active': selectedTileAction === 'zastap' }" @click="handleTileChange('zastap')">
+                            <b>ZASTĄP</b>
+                        </button>
+                        <button class="block__action-button" :class="{ 'block__action-button--active': selectedTileAction === 'doklej' }" @click="handleTileChange('doklej')">
+                            <b>DOKLEJ</b>
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div class="block">
-                    <div class="block-title">BLOK Z DŁUGĄ NAZWĄ KTÓRA SIĘ SAMA ODPOWIEDNIO PRZYTNIE</div>
-                    <div class="content-block">
-                        <p v-for="(content, index) in contentList" :key="index">{{ content }}</p>
+                    <div class="block__title">BLOK Z DŁUGĄ NAZWĄ KTÓRA SIĘ SAMA ODPOWIEDNIO PRZYTNIE</div>
+                    <div class="block__content">
+                        <p>{{ contentList.join(' ') }}</p>
                     </div>
                 </div>
             </div>
@@ -76,7 +86,7 @@ export default {
                 } else if (action === 'doklej') {
                     if (!this.contentList.includes(selectedContent)) {
                         this.contentList.push(selectedContent);
-                        this.contentList.sort(); 
+                        this.contentList.sort();
                     } else {
                         alert('Wybrana treść jest już dostępna w bloku.');
                     }
@@ -98,92 +108,101 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .main-content {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    padding: 20px;
-    background-color: #2A2D36;
-    color: white;
-    min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #2A2D36;
+  color: white;
+  min-height: 100vh;
 }
 
 .main-header {
-    text-align: center;
-    margin-bottom: 5%;
-    text-decoration: underline;
-    text-decoration-style: solid;
-    text-decoration-color: white; 
-    text-decoration-thickness: 1px; 
+  text-align: center;
+  margin-bottom: 5vh;
+  text-decoration: underline solid white 1px;
 }
 
 .column-container {
-    display: flex;
-    justify-content: space-between; 
-    max-width: 98%; 
-    width: 100%; 
+  display: flex;
+  justify-content: space-between;
+  max-width: 98vw;
+  width: 100%;
+  @media (max-width: 60rem) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .column {
-    flex: 1;
-    margin-right: 20px; 
+  flex: 1;
+  margin-right: 1.25rem;
+  @media (max-width: 60rem) {
+    margin-right: 0;
+    margin-bottom: 1.25rem;
+  }
 }
 
 .block {
-    padding: 20px;
+  padding: 1.25rem;
 }
 
-.block-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 15%;
-    text-align: center;
+.block__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15%;
+  text-align: center;
 }
 
-.radio-buttons {
-    display: flex;
-    flex-direction: column;
-    border-radius: 4px;
-    border: white;
-
+.block__radio-buttons {
+  display: flex;
+  flex-direction: column;
 }
 
-.radio-buttons label {
-    margin-bottom: 10px;
+.block__radio-button {
+  margin-bottom: 0.625rem;
 }
 
-.tile {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+.block__radio-button--selected {
+  font-weight: bold;
 }
 
-.action-button {
-    background-color: #2A2D36;
-    border: none;
+.block__tile {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.block__action-button {
+  background-color: #2A2D36;
+  border: ridge white;
+  color: #A3A8B7;
+  padding: 1rem 3.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+  height: 3rem;
+  &:hover {
+    background-image: linear-gradient(135deg, #e78302, #ffab3c);
     color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+  }
 }
 
-.action-button:hover{
-    background-color: #E78302; 
+.block__action-button--active {
+  background-image: linear-gradient(135deg, #e78302, #ffab3c);
+  color: white;
 }
 
-.content-block {
-    margin-top: 20px;
-    padding: 20px;
-    min-height: 200px;
-    border-radius: 8px;
-    overflow-y: auto; 
-    text-align: center;
+.block__content {
+  text-align: center;
+  font-weight: lighter;
 }
 
-.content-block p {
-    margin: 5px 0;
-    color: white;
+.block__content p {
+  margin: 0.3125rem 0;
+  color: #888C97;
+  white-space: pre-wrap;
 }
 </style>

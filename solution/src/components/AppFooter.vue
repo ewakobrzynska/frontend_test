@@ -12,8 +12,8 @@
                 <button @click="toggleMenu">POKAŻ</button>
                 <div class="popup-menu" :class="{ show: showMenu }">
                     <ul>
-                        <li><a href="#" @click="restoreDefaults">Zresetuj ustawienia</a></li>
-                        <li><a href="#" @click="addName">Pokaz dane osobowe</a></li>
+                        <li><a href="#" @click="restoreDefaults">ZRESETUJ USTAWIENIA</a></li>
+                        <li><a href="#" @click="addName">POKAZ DANE OSOBOWE</a></li>
                     </ul>
                 </div>
             </div>
@@ -141,7 +141,6 @@ footer {
     bottom: 100%;
     right: 0;
     background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     width: 165px;
 }
@@ -172,7 +171,7 @@ footer {
 }
 
 .popup-menu li a:hover {
-    background-color: #ddd;
+    color:#E78302;
 }
 
 .popup-menu.show {
