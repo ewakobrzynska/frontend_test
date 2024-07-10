@@ -87,7 +87,7 @@ footer {
 }
 .footer-left:hover .rotate-box {
     animation: rotate 1s linear infinite;
-    border: 2px solid #E44D27;
+    border: 2px solid #E78302
 }
 
 .footer-center {
@@ -186,7 +186,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    border: 2px solid #E44D27;
+    border: 2px solid #E78302;
     box-sizing: border-box;
 }
 

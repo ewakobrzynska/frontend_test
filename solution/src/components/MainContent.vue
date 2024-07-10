@@ -1,18 +1,18 @@
 <template>
     <main class="main-content">
         <h1 class="main-header">Nagłówek H1</h1>
-        <div class="column">
-            <div class="column-item">
+        <div class="column-container">
+            <div class="column">
                 <div class="block">
                     <div class="block-title">BLOK PIERWSZY</div>
                     <div class="radio-buttons">
-                        <label><input type="radio" name="option" value="first" @change="handleOptionChange"> Opcja 1</label>
-                        <label><input type="radio" name="option" value="second" @change="handleOptionChange"> Opcja 2</label>
+                        <label><input type="radio" name="option" value="first" @change="handleOptionChange"> Opcja pierwsza</label>
+                        <label><input type="radio" name="option" value="second" @change="handleOptionChange"> Opcja druga</label>
                         <label><input type="radio" name="option" value="random" @change="handleOptionChange"> Opcja losowa</label>
                     </div>
                 </div>
             </div>
-            <div class="column-item">
+            <div class="column">
                 <div class="block">
                     <div class="block-title">BLOK DRUGI</div>
                     <div class="tile">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div>
-            <div class="column-item">
+            <div class="column">
                 <div class="block">
                     <div class="block-title">BLOK Z DŁUGĄ NAZWĄ KTÓRA SIĘ SAMA ODPOWIEDNIO PRZYTNIE</div>
                     <div class="content-block">
@@ -106,44 +106,47 @@ export default {
     padding: 20px;
     background-color: #2A2D36;
     color: white;
-    height: 100vh;
+    min-height: 100vh; 
 }
 
 .main-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 5%;
     text-decoration: underline;
-    position: relative;
+    text-decoration-style: solid;
+    text-decoration-color: white; 
+    text-decoration-thickness: 1px; 
+}
+
+.column-container {
+    display: flex;
+    justify-content: space-between; 
+    max-width: 98%; 
+    width: 100%; 
 }
 
 .column {
-    display: flex; 
-    flex: 1; 
+    flex: 1;
+    margin-right: 20px; 
 }
 
-.column-item {
-    flex: 1; 
-    margin-right: 20px;
+.block {
+    padding: 20px;
 }
 
-/* Style dla ostatniej kolumny */
-.column-item:last-child .block-title {
-    /* Stylizacja bloku z długą nazwą */
+.block-title {
     font-size: 1.2rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.content-block {
-    
-    padding: 10px;
-    min-height: 200px;
+    font-weight: bold;
+    margin-bottom: 15%;
+    text-align: center;
 }
 
 .radio-buttons {
     display: flex;
     flex-direction: column;
+    border-radius: 4px;
+    border: white;
+
 }
 
 .radio-buttons label {
@@ -152,13 +155,13 @@ export default {
 
 .tile {
     display: flex;
-    flex-direction: row; 
-    justify-content: space-between; 
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
 .action-button {
     background-color: #2A2D36;
-    border: 1px solid #ccc;
+    border: none;
     color: white;
     padding: 10px 20px;
     cursor: pointer;
@@ -166,18 +169,21 @@ export default {
     transition: background-color 0.3s;
 }
 
-.action-button:hover {
-    background-color:#E44D27;
-}
-
-.block-title {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    font-weight: bold;
+.action-button:hover{
+    background-color: #E78302; 
 }
 
 .content-block {
-    padding: 10px;
+    margin-top: 20px;
+    padding: 20px;
     min-height: 200px;
+    border-radius: 8px;
+    overflow-y: auto; 
+    text-align: center;
+}
+
+.content-block p {
+    margin: 5px 0;
+    color: white;
 }
 </style>
