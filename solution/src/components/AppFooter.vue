@@ -60,7 +60,6 @@ export default {
 <style scoped>
 footer {
     background-color: #15161A;
-    border-top: 1px solid #ccc;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -79,9 +78,16 @@ footer {
     transition: border-color 0.3s;
     color: #A4A8B1;
 }
-
+.footer-left .rotate-box {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border: 2px solid;
+    box-sizing: border-box;
+}
 .footer-left:hover .rotate-box {
     animation: rotate 1s linear infinite;
+    border: 2px solid #E44D27;
 }
 
 .footer-center {
@@ -186,10 +192,12 @@ footer {
 
 @keyframes rotate {
     from {
-        transform: rotate(0deg);
+        transform: rotateY(0deg);
+        transform: rotateX(0deg);
     }
     to {
-        transform: rotate(360deg);
+        transform: rotateY(180deg);
+        transform: rotateX(180deg);
     }
 }
 </style>

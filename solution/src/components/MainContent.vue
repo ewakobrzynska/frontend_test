@@ -6,9 +6,9 @@
                 <div class="block">
                     <div class="block-title">BLOK PIERWSZY</div>
                     <div class="radio-buttons">
-                        <label><input type="radio" name="option" value="first"> Opcja 1</label>
-                        <label><input type="radio" name="option" value="second"> Opcja 2</label>
-                        <label><input type="radio" name="option" value="random"> Opcja losowa</label>
+                        <label><input type="radio" name="option" value="first" @change="handleOptionChange"> Opcja 1</label>
+                        <label><input type="radio" name="option" value="second" @change="handleOptionChange"> Opcja 2</label>
+                        <label><input type="radio" name="option" value="random" @change="handleOptionChange"> Opcja losowa</label>
                     </div>
                 </div>
             </div>
@@ -16,15 +16,16 @@
                 <div class="block">
                     <div class="block-title">BLOK DRUGI</div>
                     <div class="tile">
-                        <label><input type="radio" name="tile" value="zastap"> Zastąp</label>
-                        <label><input type="radio" name="tile" value="doklej"> Doklej</label>
+                        <button class="action-button" :class="{ active: selectedTileAction === 'zastap' }" @click="handleTileChange('zastap')">ZASTĄP</button>
+                        <button class="action-button" :class="{ active: selectedTileAction === 'doklej' }" @click="handleTileChange('doklej')">DOKLEJ</button>
                     </div>
                 </div>
             </div>
             <div class="column-item">
                 <div class="block">
                     <div class="block-title">BLOK Z DŁUGĄ NAZWĄ KTÓRA SIĘ SAMA ODPOWIEDNIO PRZYTNIE</div>
-                    <div class="content-block">      
+                    <div class="content-block">
+                        <p v-for="(content, index) in contentList" :key="index">{{ content }}</p>
                     </div>
                 </div>
             </div>
@@ -33,8 +34,67 @@
 </template>
 
 <script>
+import contentData from '@/assets/content.json';
+
 export default {
     name: 'MainContent',
+    data() {
+        return {
+            selectedOption: '',
+            selectedTileAction: '',
+            contentList: []
+        };
+    },
+    methods: {
+        handleOptionChange(event) {
+            this.selectedOption = event.target.value;
+        },
+        handleTileChange(action) {
+            this.selectedTileAction = action;
+            this.updateContentBlock(action);
+        },
+        updateContentBlock(action) {
+            if (this.selectedOption) {
+                let selectedContent = '';
+
+                switch (this.selectedOption) {
+                    case 'first':
+                        selectedContent = contentData[0].text;
+                        break;
+                    case 'second':
+                        selectedContent = contentData[1].text;
+                        break;
+                    case 'random':
+                        selectedContent = this.getRandomContent();
+                        break;
+                    default:
+                        break;
+                }
+
+                if (action === 'zastap') {
+                    this.contentList = [selectedContent];
+                } else if (action === 'doklej') {
+                    if (!this.contentList.includes(selectedContent)) {
+                        this.contentList.push(selectedContent);
+                        this.contentList.sort(); 
+                    } else {
+                        alert('Wybrana treść jest już dostępna w bloku.');
+                    }
+                }
+            } else {
+                alert('Wybierz opcję.');
+            }
+        },
+        getRandomContent() {
+            const unusedContents = contentData.filter(item => !this.contentList.includes(item.text));
+            if (unusedContents.length === 0) {
+                alert('Nie ma więcej unikalnych treści do dodania.');
+                return '';
+            }
+            const randomIndex = Math.floor(Math.random() * unusedContents.length);
+            return unusedContents[randomIndex].text;
+        }
+    }
 }
 </script>
 
@@ -76,7 +136,7 @@ export default {
 }
 
 .content-block {
-    border: 1px solid #ccc;
+    
     padding: 10px;
     min-height: 200px;
 }
@@ -92,11 +152,22 @@ export default {
 
 .tile {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; 
+    justify-content: space-between; 
 }
 
-.tile label {
-    margin-bottom: 10px;
+.action-button {
+    background-color: #2A2D36;
+    border: 1px solid #ccc;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.action-button:hover {
+    background-color:#E44D27;
 }
 
 .block-title {
@@ -106,7 +177,6 @@ export default {
 }
 
 .content-block {
-    border: 1px solid #ccc;
     padding: 10px;
     min-height: 200px;
 }

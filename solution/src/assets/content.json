@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+        "id": 2,
+        "text": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
+    },
+    {
+        "id": 3,
+        "text": "Fusce varius, risus sed vehicula rutrum, justo justo tincidunt magna, ac faucibus turpis quam sit amet nisl."
+    },
+    {
+        "id": 4,
+        "text": "Nullam scelerisque velit a fermentum interdum."
+    },
+    {
+        "id": 5,
+        "text": "Quisque rutrum lacus ac erat luctus, in ultrices tortor volutpat."
+    },
+    {
+        "id": 6,
+        "text": "Integer aliquam odio a ex aliquam, a feugiat sem posuere."
+    }
+]
