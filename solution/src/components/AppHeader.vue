@@ -9,8 +9,8 @@
         </div>
         <div class="header-right">
             <div class="header-title">
-                Zadanie rekrutacyjne<br>
-                Ewa Kobrzyńska
+                Zadanie <b>rekrutacyjne</b><br>
+                
             </div>
         </div>
     </header>
@@ -28,7 +28,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 15px 35px;
+    height: 85px;
 }
 
 .header-left {
@@ -39,6 +40,10 @@
 .header-right {
     flex: 1;
     text-align: right;
+}
+
+.header-right .header-title{
+    font-size: large;
 }
 
 /* Logo style */

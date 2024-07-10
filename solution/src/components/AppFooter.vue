@@ -2,17 +2,18 @@
     <footer>
         <div class="footer-left">
             <div class="text">CSS<br>IS<br>AWESOME</div>
+            <div class="rotate-box"></div>
         </div>
         <div class="footer-center">
             <div class="text">nabthat</div>
         </div>
         <div class="footer-right">
             <div class="dropdown">
-                <button id="showMenu">Menu Pokaż</button>
-                <div class="popup-menu" id="popupMenu">
+                <button @click="toggleMenu">POKAŻ</button>
+                <div class="popup-menu" :class="{ show: showMenu }">
                     <ul>
-                        <li><a href="#" id="restoreDefaults">Przywróć ustawienia</a></li>
-                        <li><a href="#" id="addName">Dodaj imię i nazwisko</a></li>
+                        <li><a href="#" @click="restoreDefaults">Zresetuj ustawienia</a></li>
+                        <li><a href="#" @click="addName">Pokaz dane osobowe</a></li>
                     </ul>
                 </div>
             </div>
@@ -26,16 +27,33 @@ export default {
   data() {
     return {
       showMenu: false,
+      originalTitle: "Zadanie <b>rekrutacyjne</b>",
+      nameAdded: false,
     };
   },
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
     },
+    restoreDefaults() {
+      document.querySelector('.header-title').innerHTML = this.originalTitle;
+      this.nameAdded = false;
+      this.closeMenu();
+    },
+    addName() {
+      if (!this.nameAdded) {
+        document.querySelector('.header-title').innerHTML += 'Ewa Kobrzyńska';
+        this.nameAdded = true;
+      }
+      this.closeMenu();
+    },
     closeMenu() {
       this.showMenu = false;
     },
   },
+  mounted() {
+    this.originalTitle = document.querySelector('.header-title').innerHTML;
+  }
 }
 </script>
 
@@ -47,8 +65,6 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    bottom: 0;
     width: 100%;
 }
 
@@ -58,17 +74,15 @@ footer {
     position: relative;
     padding: 5px;
     font-family: Arial, sans-serif;
-    width: 100px; 
+    width: 100px;
     height: 100px;
-    border: 2px solid black; 
-    transition: border-color 0.3s; 
+    transition: border-color 0.3s;
     color: #A4A8B1;
 }
 
-.footer-left:hover {
-    border-color: orange;
+.footer-left:hover .rotate-box {
+    animation: rotate 1s linear infinite;
 }
-
 
 .footer-center {
     flex: 1;
@@ -85,7 +99,7 @@ footer {
     content: '';
     flex: 10px;
     border-bottom: 1px solid #272A2F;
-    margin: 0 4px; 
+    margin: 0 4px;
     width: 5px;
 }
 
@@ -94,18 +108,36 @@ footer {
     text-align: right;
 }
 
-/* Style dla menu rozwijanego */
 .dropdown {
     position: relative;
     display: inline-block;
+    width: 165px;
+    height: 30px;
+}
+
+.dropdown button {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+.dropdown button::after {
+    content: '❯';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .popup-menu {
     display: none;
     position: absolute;
+    bottom: 100%;
+    right: 0;
     background-color: #f9f9f9;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    width: 165px;
 }
 
 .popup-menu ul {
@@ -122,14 +154,42 @@ footer {
 .popup-menu li a {
     text-decoration: none;
     color: #333;
+    display: block;
+}
+
+.popup-menu li a::before {
+    content: '❯';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .popup-menu li a:hover {
     background-color: #ddd;
 }
 
-/* Pokazywanie menu po kliknięciu */
-.show {
+.popup-menu.show {
     display: block;
+}
+
+/* Styles for rotating box */
+.rotate-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #E44D27;
+    box-sizing: border-box;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 </style>

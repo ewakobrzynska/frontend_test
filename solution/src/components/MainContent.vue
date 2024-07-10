@@ -1,5 +1,6 @@
 <template>
     <main class="main-content">
+        <h1 class="main-header">Nagłówek H1</h1>
         <div class="column">
             <div class="column-item">
                 <div class="block">
@@ -29,34 +30,40 @@
             </div>
         </div>
     </main>
-  </template>
-  
-  <script>
-  export default {
+</template>
+
+<script>
+export default {
     name: 'MainContent',
-  }
-  </script>
-  
-  <style scoped>
-  .main-content {
+}
+</script>
+
+<style scoped>
+.main-content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; 
+    align-items: center;
     padding: 20px;
     background-color: #2A2D36;
+    color: white;
+    height: 100vh;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 40px;
+    text-decoration: underline;
+    position: relative;
 }
 
 .column {
-    flex: 1;
-    padding: 10px;
+    display: flex; 
+    flex: 1; 
 }
 
 .column-item {
-    flex: 1;
+    flex: 1; 
     margin-right: 20px;
-}
-
-.block {
-    margin-bottom: 20px;
 }
 
 /* Style dla ostatniej kolumny */
@@ -95,6 +102,7 @@
 .block-title {
     font-size: 1.2rem;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .content-block {
@@ -102,5 +110,4 @@
     padding: 10px;
     min-height: 200px;
 }
-  </style>
-  
+</style>
