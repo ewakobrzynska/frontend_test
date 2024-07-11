@@ -11,7 +11,7 @@
       </div>
       <div class="footer__right">
         <div class="footer__dropdown">
-          <button class="footer__button" @click="toggleMenu">POKAŻ<span class="arrow">&#10095;</span></button>
+          <button class="footer__button" @click="toggleMenu">POKAŻ<span class="arrow" :class="{ 'arrow--expanded': showMenu } " aria-hidden="true">&#10095;</span></button>
           <div class="footer__popup-menu" :class="{ 'footer__popup-menu--show': showMenu }">
             <ul class="footer__menu-list">
               <li class="footer__menu-item"><a href="#" @click="restoreDefaults"><span>&#10095;</span>ZRESETUJ USTAWIENIA</a></li>
@@ -147,6 +147,9 @@
             margin-left: 1rem;
             display: inline-block;
             transform: rotate(270deg);
+            &--expanded ,&:hover .arrow, &:focus .arrow {
+              transform: rotate(90deg);
+            }
           }
           &:hover{
               color:white;
@@ -162,7 +165,7 @@
           z-index: 10;
           width: 100%;
           box-shadow: 0 -1rem 1rem rgba(0, 0, 0, 0.2), 1rem 0 1rem rgba(0, 0, 0, 0.2), -1rem 0 1rem rgba(0, 0, 0, 0.2); 
-          &--show {
+          &.footer__popup-menu--show {
             display: block;
           }
   
