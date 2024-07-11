@@ -132,40 +132,53 @@ export default {
   color: $text-color;
   min-height: 100vh;
 }
+
 .main-header {
   text-align: center;
   margin-bottom: 5vh;
-  padding-bottom: 1rem; 
+  padding-bottom: 1rem;
   line-height: 1.5;
-  position: relative; 
+  position: relative;
 }
+
 .main-header::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%; 
-  height: 0.5px; 
+  width: 80%;
+  height: 0.5px;
   background-color: $text-color;
 }
+
 .column-container {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   max-width: 98vw;
   width: 100%;
-  @media (max-width: 60rem) {
-    flex-direction: column;
-    align-items: center;
+
+  @media (max-width: 960px) {
+    justify-content: center;
   }
 }
+
 .column {
-  flex: 1;
-  margin-right: 1.25rem;
+  flex: 2;
+  min-width: 9rem; 
+  @media (max-width: 960px) {
+    margin:0 -0.6rem;
+    &:nth-child(3) {
+      margin-top: 2rem;
+    }
+  }
 }
+
 .block {
   padding: 1.25rem;
 }
+
 .block__title {
   font-size: 1.2rem;
   font-weight: bold;
@@ -182,11 +195,13 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
 .block__radio-button {
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
 }
+
 .block__radio-button input[type="radio"] {
   appearance: none;
   background-color: $main-bg-color;
@@ -199,6 +214,7 @@ export default {
   outline: none;
   margin-right: 1rem;
 }
+
 .block__radio-button input[type="radio"]:checked::before {
   content: '';
   display: block;
@@ -211,14 +227,22 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .block__radio-button--selected {
   font-weight: bold;
 }
+
 .block__tile {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
+
 .block__action-button {
   background-color: $main-bg-color;
   border: ridge $button-border-color;
@@ -228,6 +252,12 @@ export default {
   border-radius: 0.25rem;
   transition: background-color 0.3s;
   height: 3rem;
+
+  @media (max-width: 960px) {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
   &:hover {
     --x: 50%;
     --y: 50%;
@@ -235,14 +265,18 @@ export default {
     color: $text-color;
   }
 }
+
 .block__content {
   text-align: center;
   font-weight: lighter;
 }
+
 .block__content p {
   margin: 0.3125rem 0;
   color: #888C97;
   white-space: pre-wrap;
 }
+
+
 
 </style>

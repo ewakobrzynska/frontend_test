@@ -136,12 +136,11 @@
           font-weight: bold;
           cursor: pointer;
           border-radius: 0.25rem;
-          
   
           .arrow {
             margin-left: 1rem;
             display: inline-block;
-            transform: rotate(90deg);
+            transform: rotate(270deg);
           }
           &:hover{
               color:white;
