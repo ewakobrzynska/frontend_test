@@ -38,13 +38,13 @@
         this.showMenu = !this.showMenu;
       },
       restoreDefaults() {
-        document.querySelector('.header-title').innerHTML = this.originalTitle;
+        document.querySelector('.header__title').innerHTML = this.originalTitle;
         this.nameAdded = false;
         this.closeMenu();
       },
       addName() {
         if (!this.nameAdded) {
-          document.querySelector('.header-title').innerHTML += ' Ewa Kobrzyńska';
+          document.querySelector('.header__title').innerHTML += ' Ewa Kobrzyńska';
           this.nameAdded = true;
         }
         this.closeMenu();
@@ -54,12 +54,13 @@
       },
     },
     mounted() {
-      this.originalTitle = document.querySelector('.header-title').innerHTML;
+      this.originalTitle = document.querySelector('.header__title').innerHTML;
     }
   }
   </script>
   
   <style lang="scss" scoped>
+  @import '@/styles/variables.scss';
   .footer {
     background-color: #15161A;
     padding: 1rem 2rem;
@@ -85,7 +86,7 @@
   
         &:hover .footer__rotate-box {
           animation: rotate 1s linear infinite;
-          border: 0.125rem solid #E78302;
+          border: 0.125rem solid $hover-color;
         }
       }
   
@@ -135,8 +136,10 @@
           font-weight: bold;
           cursor: pointer;
           border-radius: 0.25rem;
+          
   
           .arrow {
+            margin-left: 1rem;
             display: inline-block;
             transform: rotate(90deg);
           }
@@ -174,7 +177,7 @@
                 display: block;
                 
                 &:hover {
-                  color: #E78302;
+                  color: $hover-color;
                 }
               }
               a span {
@@ -199,20 +202,22 @@
   
   @media (max-width: 960px) {
     .footer {
-      flex-direction: column;
-      align-items: flex-start;
-  
-      &__left, &__right {
-        width: 100%;
-        margin-bottom: 1rem;
-      }
+      align-items: center; 
   
       .footer__center {
         display: none;
       }
-  
-      &__button {
-        width: 100%;
+
+      &__right {
+        text-align: right;
+    
+        .footer__dropdown .footer__button {
+            padding: 1rem 4rem;
+        }
+    
+        &__button {
+          width: 100%;
+        }
       }
     }
   }
