@@ -24,12 +24,14 @@
   </template>
   
   <script>
+  import EventBus from '@/EventBus'; 
+
   export default {
     name: 'AppFooter',
     data() {
       return {
         showMenu: false,
-        originalTitle: "Zadanie <b>rekrutacyjne</b>",
+        originalTitle: "Zadanie <b>rekrutacyjne</b><br>",
         nameAdded: false,
       };
     },
@@ -40,6 +42,7 @@
       restoreDefaults() {
         document.querySelector('.header__title').innerHTML = this.originalTitle;
         this.nameAdded = false;
+        EventBus.emit('resetSettings'); 
         this.closeMenu();
       },
       addName() {
@@ -77,6 +80,7 @@
     &__left {
       position: relative;
       font-family: 'Open Sans', sans-serif;
+      font-weight: 300; 
       transition: border-color 0.3s;
       color: #A4A8B1;
   
@@ -104,6 +108,8 @@
     &__center {
         justify-content: center;
         display: flex;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300; 
 
       .footer__text {
         display: flex;
@@ -136,7 +142,7 @@
           font-weight: bold;
           cursor: pointer;
           border-radius: 0.25rem;
-  
+          font-family: 'Open Sans', sans-serif;
           .arrow {
             margin-left: 1rem;
             display: inline-block;
@@ -164,6 +170,7 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
+            font-family: 'Open Sans', sans-serif;
   
             .footer__menu-item {
               text-align: left;

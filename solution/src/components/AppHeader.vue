@@ -23,7 +23,10 @@
   
   <style lang="scss" scoped>
 @import '@/styles/variables.scss';
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+body {
+  font-family: 'Open Sans', sans-serif;
+}
   .header {
     background-color: #0B0D11;
     display: flex;
@@ -31,6 +34,7 @@
     align-items: center;
     padding: 1rem 2.5rem;
     height: 6rem; 
+    
   
     @media (max-width: 960px) {
       padding: 1rem; 

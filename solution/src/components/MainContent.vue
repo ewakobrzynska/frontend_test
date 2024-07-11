@@ -45,6 +45,7 @@
 
 <script>
 import contentData from '@/assets/content.json';
+import EventBus from '@/EventBus'; 
 
 export default {
     name: 'MainContent',
@@ -116,13 +117,23 @@ export default {
             const button = event.currentTarget;
             button.style.setProperty('--x', '50%');
             button.style.setProperty('--y', '50%');
+        },    
+        resetContentBlock() {
+          this.contentList = [];
         }
-    }   
-}
+     },
+    mounted() {
+        EventBus.on('resetSettings', () => {
+            this.resetContentBlock();
+        });
+     }
+}   
+
 </script>
 
 <style lang="scss" scoped>
 @import '@/styles/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 .main-content {
   display: flex;
   flex-direction: column;
@@ -139,6 +150,8 @@ export default {
   padding-bottom: 1rem;
   line-height: 1.5;
   position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300; 
 }
 
 .main-header::after {
@@ -158,7 +171,8 @@ export default {
   justify-content: center;
   max-width: 98vw;
   width: 100%;
-
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300; 
   @media (max-width: 960px) {
     justify-content: center;
   }
@@ -167,6 +181,7 @@ export default {
 .column {
   flex: 2;
   min-width: 9rem; 
+  
   @media (max-width: 960px) {
     margin:0 -0.6rem;
     &:nth-child(3) {
@@ -189,6 +204,8 @@ export default {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  font-family: 'Open Sans', sans-serif;
+
 }
 
 .block__radio-buttons {
@@ -269,14 +286,12 @@ export default {
 .block__content {
   text-align: center;
   font-weight: lighter;
+  
 }
-
 .block__content p {
   margin: 0.3125rem 0;
   color: #888C97;
   white-space: pre-wrap;
 }
-
-
 
 </style>
